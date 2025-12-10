@@ -389,13 +389,10 @@
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-buffer.3.4.2.framework/bare-buffer.3.4.2",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-crypto.1.12.0.framework/bare-crypto.1.12.0",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-fs.4.5.2.framework/bare-fs.4.5.2",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-hrtime.2.1.1.framework/bare-hrtime.2.1.1",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-module-lexer.1.4.7.framework/bare-module-lexer.1.4.7",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-os.3.6.2.framework/bare-os.3.6.2",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-pipe.4.1.0.framework/bare-pipe.4.1.0",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-signals.4.2.0.framework/bare-signals.4.2.0",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-subprocess.5.2.1.framework/bare-subprocess.5.2.1",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-tty.5.0.3.framework/bare-tty.5.0.3",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/bare-url.2.3.2.framework/bare-url.2.3.2",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/fs-native-extensions.1.4.5.framework/fs-native-extensions.1.4.5",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-bare-kit/quickbit-native.2.4.8.framework/quickbit-native.2.4.8",
@@ -412,13 +409,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-buffer.3.4.2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-crypto.1.12.0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-fs.4.5.2.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-hrtime.2.1.1.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-module-lexer.1.4.7.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-os.3.6.2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-pipe.4.1.0.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-signals.4.2.0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-subprocess.5.2.1.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-tty.5.0.3.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bare-url.2.3.2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/fs-native-extensions.1.4.5.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/quickbit-native.2.4.8.framework",
@@ -614,7 +608,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = pearpassappmobile/pearpassappmobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 77ZH693K52;
+				DEVELOPMENT_TEAM = 43QFHSJ5QR;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -651,7 +645,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = pearpassappmobile/pearpassappmobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 77ZH693K52;
+				DEVELOPMENT_TEAM = 43QFHSJ5QR;
 				INFOPLIST_FILE = pearpassappmobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -814,7 +808,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 77ZH693K52;
+				DEVELOPMENT_TEAM = 43QFHSJ5QR;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -865,7 +859,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 77ZH693K52;
+				DEVELOPMENT_TEAM = 43QFHSJ5QR;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
