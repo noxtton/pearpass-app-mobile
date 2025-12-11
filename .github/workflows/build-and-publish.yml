@@ -127,25 +127,37 @@ jobs:
         run: |
           eas build --platform android --profile preview --local --non-interactive
 
-      - name: Find Android artifacts
+      - name: Find and rename Android artifact
         id: find_android
         run: |
-          AAB_PATH=$(find $GITHUB_WORKSPACE -name "*.aab" -type f | head -n 1 || true)
-          echo "AAB_PATH=$AAB_PATH" >> $GITHUB_OUTPUT
-          echo "Found AAB at: $AAB_PATH"
+          set -euo pipefail
+          AAB_PATH=$(find "$GITHUB_WORKSPACE" -name "*.aab" -type f | head -n 1 || true)
+          echo "Original AAB: $AAB_PATH"
 
-          # keep your existing metadata
+          if [ -n "$AAB_PATH" ]; then
+            VERSION="${{ steps.meta.outputs.VERSION }}"
+            NEW_NAME="PearPass-Mobile-Android-v${VERSION}.aab"
+            NEW_PATH="$GITHUB_WORKSPACE/$NEW_NAME"
+
+            mv "$AAB_PATH" "$NEW_PATH"
+            echo "Renamed AAB to: $NEW_PATH"
+
+            echo "AAB_PATH=$NEW_PATH" >> "$GITHUB_OUTPUT"
+          else
+            echo "No .aab file found."
+            echo "AAB_PATH=" >> "$GITHUB_OUTPUT"
+          fi
+
           VERSION_CODE=$(jq -r '.expo.android.versionCode' app.json)
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-          echo "VERSION_CODE=$VERSION_CODE" >> $GITHUB_OUTPUT
-          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_OUTPUT
+          echo "VERSION_CODE=$VERSION_CODE" >> "$GITHUB_OUTPUT"
+          echo "TIMESTAMP=$TIMESTAMP" >> "$GITHUB_OUTPUT"
 
       - name: Upload Android artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: PearPass-Mobile-Android-v${{ steps.meta.outputs.VERSION }}
-          path: |
-            ${{ steps.find_android.outputs.AAB_PATH }}
+          name: PearPass-Mobile-Android-v${{ steps.meta.outputs.VERSION }}.aab
+          path: ${{ steps.find_android.outputs.AAB_PATH }}
           if-no-files-found: ignore
 
       - name: Submit to Google play via EAS
@@ -271,26 +283,37 @@ jobs:
           # CHANGED: add branch-aware profile
           eas build --platform ios --profile ${{ steps.branch_profile.outputs.PROFILE }} --local --non-interactive
 
-      - name: Find IPA file
+      - name: Find and rename IPA file
         id: find_ipa
         run: |
-          IPA_PATH=$(find $GITHUB_WORKSPACE -name "*.ipa" -type f | head -n 1)
-          echo "IPA_PATH=$IPA_PATH" >> $GITHUB_OUTPUT
-          echo "Found IPA at: $IPA_PATH"
+          set -euo pipefail
+          IPA_PATH=$(find "$GITHUB_WORKSPACE" -name "*.ipa" -type f | head -n 1 || true)
+          echo "Original IPA: $IPA_PATH"
 
-          # Extract version from app.json (kept for logging)
-          VERSION=$(jq -r '.expo.version' app.json)
-          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-          echo "App version: $VERSION"
+          if [ -n "$IPA_PATH" ]; then
+            VERSION=$(jq -r '.expo.version' app.json)
+            echo "App version: $VERSION"
+
+            NEW_NAME="PearPass-Mobile-iOS-v${VERSION}.ipa"
+            NEW_PATH="$GITHUB_WORKSPACE/$NEW_NAME"
+
+            mv "$IPA_PATH" "$NEW_PATH"
+            echo "Renamed IPA to: $NEW_PATH"
+
+            echo "IPA_PATH=$NEW_PATH" >> "$GITHUB_OUTPUT"
+            echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+          else
+            echo "No .ipa file found."
+            echo "IPA_PATH=" >> "$GITHUB_OUTPUT"
+          fi
 
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_OUTPUT
+          echo "TIMESTAMP=$TIMESTAMP" >> "$GITHUB_OUTPUT"
 
-      # NEW: upload iOS artifact for unified release
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PearPass-Mobile-iOS-v${{ steps.find_ipa.outputs.VERSION }}
+          name: PearPass-Mobile-iOS-v${{ steps.find_ipa.outputs.VERSION }}.ipa
           path: ${{ steps.find_ipa.outputs.IPA_PATH }}
           if-no-files-found: error
 
@@ -331,7 +354,7 @@ jobs:
           eas submit -p ios --path ${{ steps.find_ipa.outputs.IPA_PATH }} --non-interactive
 
   mobile_release:
-    name: Create unified Mobile release (IPA)
+    name: Create unified Mobile release (IPA & AAB)
     runs-on: ubuntu-latest
     needs: [android, ios]
     if: github.ref == 'refs/heads/main'
@@ -339,14 +362,14 @@ jobs:
       - name: Download Android artifacts
         uses: actions/download-artifact@v4
         with:
-          name: PearPass-Mobile-Android-v${{ needs.android.outputs.version }}
+          name: PearPass-Mobile-Android-v${{ needs.android.outputs.version }}.aab
           path: ./dist
         continue-on-error: false
 
       - name: Download iOS artifacts
         uses: actions/download-artifact@v4
         with:
-          name: PearPass-Mobile-iOS-v${{ needs.android.outputs.version }}
+          name: PearPass-Mobile-iOS-v${{ needs.android.outputs.version }}.ipa
           path: ./dist
         continue-on-error: false
 
@@ -364,6 +387,7 @@ jobs:
           prerelease: false
           files: |
             dist/**/*.ipa
+            dist/**/*.aab
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
