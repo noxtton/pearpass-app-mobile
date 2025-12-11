@@ -6,6 +6,7 @@ on:
       - main
       - dev
 
+
 jobs:
   android:
     runs-on: ["app-build-linux-x64"]
