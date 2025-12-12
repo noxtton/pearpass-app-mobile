@@ -166,9 +166,13 @@ exports[`DropdownSwapVault component renders correctly with vaults 1`] = `
         </RNSVGGroup>
       </RNSVGSvgView>
       <Text
+        ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           {
             "color": "#BADE5B",
+            "flex": 1,
+            "marginHorizontal": 8,
           }
         }
       >
@@ -438,9 +442,13 @@ exports[`DropdownSwapVault component renders correctly with vaults 1`] = `
                   </RNSVGGroup>
                 </RNSVGSvgView>
                 <Text
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
                   style={
                     {
                       "color": "#BADE5B",
+                      "flex": 1,
+                      "marginHorizontal": 8,
                     }
                   }
                 >
@@ -599,9 +607,13 @@ exports[`DropdownSwapVault component renders correctly with vaults 1`] = `
                   </RNSVGGroup>
                 </RNSVGSvgView>
                 <Text
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
                   style={
                     {
                       "color": "#BADE5B",
+                      "flex": 1,
+                      "marginHorizontal": 8,
                     }
                   }
                 >
