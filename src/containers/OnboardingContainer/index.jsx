@@ -126,8 +126,8 @@ export const OnboardingContainer = ({
       case 0:
         return (
           <View
-            testID="onboarding_media_step_0"
-            accessibilityLabel="onboarding_media_step_0"
+            testID="onboarding-media-step-0"
+            accessibilityLabel="onboarding-media-step-0"
           >
           <InitialVideo
             onStart={() => buttonFadeAnim.setValue(0)}
@@ -144,8 +144,8 @@ export const OnboardingContainer = ({
       case 1:
         return (
           <View
-            testID="onboarding_media_step_1"
-            accessibilityLabel="onboarding_media_step_1"
+            testID="onboarding-media-step-1"
+            accessibilityLabel="onboarding-media-step-1"
           >
           <Animated.Image
             source={require('../../../assets/images/intro/closeLock.png')}
@@ -169,8 +169,8 @@ export const OnboardingContainer = ({
       case 2:
         return (
           <View
-            testID="onboarding_media_step_2"
-            accessibilityLabel="onboarding_media_step_2"
+            testID="onboarding-media-step-2"
+            accessibilityLabel="onboarding-media-step-2"
           >
             <Rive resourceName="password" style={styles.riveAnimation} />
           </View>
@@ -179,8 +179,8 @@ export const OnboardingContainer = ({
       case 3:
         return (
           <View
-            testID="onboarding_media_step_3"
-            accessibilityLabel="onboarding_media_step_3"
+            testID="onboarding-media-step-3"
+            accessibilityLabel="onboarding-media-step-3"
           >
             <Rive resourceName="category" style={styles.riveAnimation} />
           </View>
@@ -189,8 +189,8 @@ export const OnboardingContainer = ({
       case 4:
         return (
           <View
-            testID="onboarding_media_step_4"
-            accessibilityLabel="onboarding_media_step_4"
+            testID="onboarding-media-step-4"
+            accessibilityLabel="onboarding-media-step-4"
           >
             <Rive resourceName="form" style={styles.riveAnimationForm} />
           </View>
@@ -198,8 +198,8 @@ export const OnboardingContainer = ({
       case 5:
         return (
           <View 
-            testID="onboarding_media_step_5"
-            accessibilityLabel="onboarding_media_step_5"
+            testID="onboarding-media-step-5"
+            accessibilityLabel="onboarding-media-step-5"
             style={styles.finalStepContainer}>
               <View style={styles.iconContainer}>
                 <View style={styles.qrheaderContainer}>
@@ -307,8 +307,8 @@ export const OnboardingContainer = ({
       ]}
     >
       <View 
-      testID="onboarding_progress_bar"
-      accessibilityLabel="onboarding_progress_bar"
+      testID="onboarding-progress-bar"
+      accessibilityLabel="onboarding-progress-bar"
       style={styles.paginationContainer}>
         {SCREENS.map((step) => (
           <TouchableOpacity
@@ -325,17 +325,17 @@ export const OnboardingContainer = ({
       </View>
       <View style={styles.actionButtonsContainer}>
         <TouchableOpacity 
-        testID="onboarding_continue_button"
-        accessibilityLabel="onboarding_continue_button"
+        testID="onboarding-continue-button"
+        accessibilityLabel="onboarding-continue-button"
         onPress={onContinue} style={styles.continueButton}>
-          <Text testID="onboarding_continue_text" style={styles.continueButtonText}>{t`Continue`}</Text>
+          <Text testID="onboarding-continue-text" style={styles.continueButtonText}>{t`Continue`}</Text>
         </TouchableOpacity>
         {currentStep !== SCREENS[SCREENS.length - 1] && (
           <TouchableOpacity 
-          testID="onboarding_skip_button"
-          accessibilityLabel="onboarding_skip_button"
+          testID="onboarding-skip-button"
+          accessibilityLabel="onboarding-skip-button"
           onPress={onSkip} style={styles.skipButton}>
-            <Text testID="onboarding_skip_text" style={styles.skipButtonText}>{t`Skip`}</Text>
+            <Text testID="onboarding-skip-text" style={styles.skipButtonText}>{t`Skip`}</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -363,31 +363,31 @@ export const OnboardingContainer = ({
       <View style={styles.contentWrapper}>
         <View style={styles.topSection}>
           <View
-          testID="onboarding_logo"
-          accessibilityLabel="onboarding_logo" 
+          testID="onboarding-logo"
+          accessibilityLabel="onboarding-logo" 
           style={styles.logoContainer}>
             <LogoTextWithLock width={170} height={50} />
           </View>
         </View>
 
         <View
-        testID="onboarding_center_section"
-        accessibilityLabel="onboarding_center_section"
+        testID="onboarding-center-section"
+        accessibilityLabel="onboarding-center-section"
         style={styles.centerSection}>{renderCenterContent()}</View>
 
         <View 
-        testID="onboarding_bottom_section"
-        accessibilityLabel="onboarding_bottom_section"
+        testID="onboarding-bottom-section"
+        accessibilityLabel="onboarding-bottom-section"
         style={styles.bottomSection}>
           <Text 
-          testID="onboarding_main_description"
-          accessibilityLabel="onboarding_main_description"
+          testID="onboarding-main-description"
+          accessibilityLabel="onboarding-main-description"
           style={styles.descriptionText}>{mainDescription}</Text>
 
           {getSubDescriptionContent() && (
             <View 
-            testID="onboarding_sub_description"
-            accessibilityLabel="onboarding_sub_description"   
+            testID="onboarding-sub-description"
+            accessibilityLabel="onboarding-sub-description"   
             style={styles.subDescriptionWrapper}>
               <Text style={styles.subDescriptionText}>
                 {getSubDescriptionContent()}
