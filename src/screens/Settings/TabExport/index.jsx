@@ -2,23 +2,16 @@ import { useEffect, useState } from 'react'
 
 import { useLingui } from '@lingui/react/macro'
 import {
-  useVault,
-  useVaults,
+  authoriseCurrentProtectedVault,
+  getCurrentProtectedVaultEncryption,
+  getMasterEncryption,
   getVaultById,
   listRecords,
-  getCurrentProtectedVaultEncryption,
-  authoriseCurrentProtectedVault,
-  getMasterEncryption,
-  useUserData
+  useVault,
+  useVaults
 } from 'pearpass-lib-vault'
 import Toast from 'react-native-toast-message'
 
-import { Description, ExportButton, ExportFormat, VaultsList } from './styles'
-import { Container } from './styles'
-import {
-  handleExportCSVPerVault,
-  handleExportJsonPerVault
-} from './utils/exportVaults'
 import { CardSingleSetting } from '../../../components/CardSingleSetting'
 import { ListItem } from '../../../components/ListItem'
 import { RadioSelect } from '../../../components/RadioSelect'
@@ -28,6 +21,17 @@ import { useAutoLockContext } from '../../../context/AutoLockContext'
 import { useBottomSheet } from '../../../context/BottomSheetContext'
 import { useModal } from '../../../context/ModalContext'
 import { ButtonSecondary } from '../../../libComponents'
+import {
+  Container,
+  Description,
+  ExportButton,
+  ExportFormat,
+  VaultsList
+} from './styles'
+import {
+  handleExportCSVPerVault,
+  handleExportJsonPerVault
+} from './utils/exportVaults'
 
 export const TabExport = () => {
   const { t } = useLingui()
@@ -35,8 +39,7 @@ export const TabExport = () => {
   const { expand, collapse } = useBottomSheet()
   const { closeModal, openModal } = useModal()
   const { setShouldBypassAutoLock } = useAutoLockContext()
-  const { data, initVaults } = useVaults()
-  const { logIn } = useUserData()
+  const { data } = useVaults()
   const {
     isVaultProtected,
     refetch: refetchVault,
@@ -187,15 +190,8 @@ export const TabExport = () => {
             onClose={() => {
               collapse()
             }}
-            onConfirm={async ({ password, encryptionData }) => {
+            onConfirm={async () => {
               try {
-                if (encryptionData) {
-                  const { ciphertext, nonce, hashedPassword } = encryptionData
-                  await initVaults({ ciphertext, nonce, hashedPassword })
-                } else {
-                  await logIn({ password })
-                }
-
                 collapse()
                 setShouldBypassAutoLock(true)
                 const vaultsToExport = await Promise.all(
