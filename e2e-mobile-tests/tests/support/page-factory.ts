@@ -1,5 +1,5 @@
-import OnboardingPage from '../pageobjects/OnboardingPage';
-import SignUpPage from '../pageobjects/SignUpPage';
+import OnboardingPage from '@pages/OnboardingPage';
+import SignUpPage from '@pages/SignUpPage';
 
 class PageFactory {
   static get onboarding() {

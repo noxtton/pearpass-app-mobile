@@ -1,5 +1,5 @@
 import 'mocha';
-import { Pages } from '../support/page-factory';
+import { Pages } from '@support/page-factory';
 
 describe('Onboarding Flow', () => {
   beforeEach(async () => {

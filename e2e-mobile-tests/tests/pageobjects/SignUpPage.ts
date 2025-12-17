@@ -1,5 +1,5 @@
-import BasePage from  '../pageobjects/BasePage';
-import signUpLocators from '../locators/SignUpLocators';
+import BasePage from '@pages/BasePage';
+import signUpLocators from '@locators/SignUpLocators';
 
 class SignUpPage extends BasePage {
   protected selectors = signUpLocators

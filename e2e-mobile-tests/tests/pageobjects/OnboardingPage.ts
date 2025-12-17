@@ -1,6 +1,6 @@
-import BasePage from './BasePage';
-import onboardingLocators from '../locators/OnboardingLocators';
-import { ONBOARDING_STEPS } from '../data/onboarding.data';
+import BasePage from '@pages/BasePage';
+import onboardingLocators from '@locators/OnboardingLocators';
+import { ONBOARDING_STEPS } from '@data/onboarding.data';
 
 export class OnboardingPage extends BasePage {
   protected selectors = onboardingLocators;
