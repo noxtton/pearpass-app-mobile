@@ -168,32 +168,32 @@ export const OnboardingContainer = ({
         )
       case 2:
         return (
-          <View
+          <Rive
+            resourceName="password"
+            style={styles.riveAnimation}
             testID="onboarding-media-step-2"
             accessibilityLabel="onboarding-media-step-2"
-          >
-            <Rive resourceName="password" style={styles.riveAnimation} />
-          </View>
-        )
+    />
+  )
 
       case 3:
         return (
-          <View
+          <Rive
+            resourceName="category"
+            style={styles.riveAnimation}
             testID="onboarding-media-step-3"
             accessibilityLabel="onboarding-media-step-3"
-          >
-            <Rive resourceName="category" style={styles.riveAnimation} />
-          </View>
+    />
   )
 
       case 4:
         return (
-          <View
+          <Rive
+            resourceName="form"
+            style={styles.riveAnimationForm}
             testID="onboarding-media-step-4"
             accessibilityLabel="onboarding-media-step-4"
-          >
-            <Rive resourceName="form" style={styles.riveAnimationForm} />
-          </View>
+    />
   )
       case 5:
         return (
@@ -381,15 +381,17 @@ export const OnboardingContainer = ({
         style={styles.bottomSection}>
           <Text 
           testID="onboarding-main-description"
+          nativeID="onboarding-main-description"
           accessibilityLabel="onboarding-main-description"
           style={styles.descriptionText}>{mainDescription}</Text>
 
           {getSubDescriptionContent() && (
-            <View 
-            testID="onboarding-sub-description"
-            accessibilityLabel="onboarding-sub-description"   
-            style={styles.subDescriptionWrapper}>
-              <Text style={styles.subDescriptionText}>
+            <View style={styles.subDescriptionWrapper}>
+              <Text style={styles.subDescriptionText}
+                testID="onboarding-sub-description"
+                nativeID="onboarding-sub-description"
+                accessibilityLabel="onboarding-sub-description"
+              >
                 {getSubDescriptionContent()}
               </Text>
             </View>

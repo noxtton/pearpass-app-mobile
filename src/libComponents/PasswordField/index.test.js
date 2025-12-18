@@ -171,4 +171,28 @@ describe('PasswordField Component', () => {
 
     expect(input.props.secureTextEntry).toBe(true)
   })
+
+  test('passes inputTestID to password input', () => {
+    const { getByTestId } = render(
+      <ThemeProvider>
+        <PasswordField
+          {...defaultProps}
+          inputTestID="password-input"
+        />
+      </ThemeProvider>
+    )
+    expect(getByTestId('password-input')).toBeTruthy()
+  })
+
+  test('renders visibility toggle with testID', () => {
+    const { getByTestId } = render(
+      <ThemeProvider>
+        <PasswordField
+          {...defaultProps}
+          toggleTestID="password-toggle"
+        />
+      </ThemeProvider>
+    )
+    expect(getByTestId('password-toggle')).toBeTruthy()
+  })
 })
