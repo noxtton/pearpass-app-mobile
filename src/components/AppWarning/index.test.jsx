@@ -27,9 +27,10 @@ const renderWithProviders = (ui) =>
 describe('AppWarning', () => {
   it('renders correctly with default styles', () => {
     const { getByTestId, toJSON, getByText } = renderWithProviders(
-      <AppWarning warning="Test warning" />
+      <AppWarning testID="app-warning" warning="Test warning" />
     )
-
+    expect(getByTestId('app-warning')).toBeTruthy()
+    expect(getByTestId('app-warning-text')).toBeTruthy()
     expect(getByTestId('yellow-error-icon')).toBeTruthy()
     expect(getByText('Test warning')).toBeTruthy()
     expect(toJSON()).toMatchSnapshot()

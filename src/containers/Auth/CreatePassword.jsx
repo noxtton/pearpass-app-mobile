@@ -284,16 +284,34 @@ export const CreatePassword = () => {
                     <View style={styles.checkboxEmpty} testID="create-password-terms-checkbox-unchecked" />
                   )}
                 </TouchableOpacity>
-                <View style={styles.textContainer}>
-                  <Text style={styles.bottomText}>
-                    {t`I have read and agree to the`}{' '}
-                    <Text style={styles.linkText} onPress={handleTermsPress}
-                    testID="create-password-terms-link"
-                    accessibilityLabel="create-password-terms-link">
+                  <View style={styles.textContainer}>
+                    <View
+                      style={styles.termsTextRow}
+                      testID="create-password-terms-text-row"
+                      nativeID="create-password-terms-text-row"
+                      accessibilityLabel="create-password-terms-text-row"
+                    >
+                    <Text
+                      style={styles.bottomText}
+                      testID="create-password-terms-text"
+                      nativeID="create-password-terms-text"
+                      accessibilityLabel="create-password-terms-text"
+                    >
+                      {t`I have read and agree to the`}{' '}
+                    </Text>
+
+                    <Text
+                      style={[styles.bottomText, styles.linkText]}
+                      onPress={handleTermsPress}
+                      testID="create-password-terms-link"
+                      nativeID="create-password-terms-link"
+                      accessibilityLabel="create-password-terms-link"
+                    >
                       {t`PearPass Application Terms of Use`}
                     </Text>
-                    .
-                  </Text>
+
+                    <Text style={styles.bottomText}>.</Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -455,5 +473,10 @@ const styles = StyleSheet.create({
     color: colors.grey100.mode1,
     fontSize: 14,
     fontFamily: 'Inter'
+  },
+  termsTextRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start'
   }
 })
