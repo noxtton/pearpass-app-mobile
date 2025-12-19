@@ -57,14 +57,26 @@ export const SelectVaultType = () => {
       <View style={styles.topSection}>
         {!vaultsData?.length ? (
           <View style={styles.textWrapper}>
-            <Text style={styles.headerText} testID="select-vault-type-empty-title">{t`Enter Master Password`}</Text>
-            <Text style={styles.subHeaderText} testID="select-vault-type-empty-subtitle">
+            <Text
+              style={styles.headerText}
+              testID="select-vault-type-empty-title"
+            >{t`Enter Master Password`}</Text>
+            <Text
+              style={styles.subHeaderText}
+              testID="select-vault-type-empty-subtitle"
+            >
               {t`Now create a secure vault or load an existing one to get started.`}
             </Text>
           </View>
         ) : (
-          <View style={styles.vaultsSection} testID="select-vault-type-vaults-section">
-            <Text style={styles.headerText} testID="select-vault-type-list-title">
+          <View
+            style={styles.vaultsSection}
+            testID="select-vault-type-vaults-section"
+          >
+            <Text
+              style={styles.headerText}
+              testID="select-vault-type-list-title"
+            >
               {t`Select a vault, create a new one or load another one`}
             </Text>
 
@@ -90,7 +102,11 @@ export const SelectVaultType = () => {
       </View>
 
       <View style={styles.bottomSection}>
-        <ButtonPrimary testID="select-vault-type-create-new" stretch onPress={handleCreateVault}>
+        <ButtonPrimary
+          testID="select-vault-type-create-new"
+          stretch
+          onPress={handleCreateVault}
+        >
           {t`Create a new vault`}
         </ButtonPrimary>
 
