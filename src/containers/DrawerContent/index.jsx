@@ -5,7 +5,6 @@ import { ExitIcon, FullBodyIcon } from 'pearpass-lib-ui-react-native-components'
 import { colors } from 'pearpass-lib-ui-theme-provider/native'
 import { closeAllInstances, useVault, useVaults } from 'pearpass-lib-vault'
 import { ActivityIndicator } from 'react-native'
-import { NAVIGATION_ROUTES } from 'src/constants/navigation'
 
 import {
   ActionsContainer,
@@ -16,6 +15,7 @@ import {
   ScrollView
 } from './styles'
 import { DropdownSwapVault } from '../../components/DropdownSwapVault'
+import { NAVIGATION_ROUTES } from '../../constants/navigation'
 import { useBottomSheet } from '../../context/BottomSheetContext'
 import { useModal } from '../../context/ModalContext'
 import { useSharedFilter } from '../../context/SharedFilterContext'

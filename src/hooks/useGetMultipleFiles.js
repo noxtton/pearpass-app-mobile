@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer'
 
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 import { vaultGetFile } from 'pearpass-lib-vault'
 
@@ -14,6 +14,7 @@ import { logger } from '../utils/logger'
  * @param {Function} param0.updateValues
  * @param {Object} param0.initialRecord
  * @param {Object} param0.currentValues - Optional: current form values to merge with loaded files
+ * @returns {{ refetch: () => Promise<void> }} Object with refetch function
  */
 export const useGetMultipleFiles = ({
   fieldNames,
@@ -173,4 +174,25 @@ export const useGetMultipleFiles = ({
       JSON.stringify(initialRecord?.data?.[fieldName] || [])
     )
   ])
+
+  const refetch = useCallback(async () => {
+    if (!fieldNames || !updateValues || !initialRecord) {
+      return
+    }
+
+    try {
+      const promises = fieldNames
+        .filter(Boolean)
+        .map((fieldName) => getFilesAsync(fieldName))
+
+      await Promise.all(promises)
+    } catch (error) {
+      logger.error('Error refetching files:', error)
+      if (isMountedRef.current) {
+        setIsLoadingContext(false)
+      }
+    }
+  }, [fieldNames, updateValues, initialRecord])
+
+  return { refetch }
 }

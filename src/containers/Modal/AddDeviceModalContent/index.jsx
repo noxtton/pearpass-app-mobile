@@ -18,11 +18,7 @@ import {
 } from 'pearpass-lib-vault'
 import { TouchableOpacity } from 'react-native'
 import { SvgXml } from 'react-native-svg'
-import { useAutoLockContext } from 'src/context/AutoLockContext'
 
-import { useModal } from '../../../context/ModalContext'
-import { useCopyToClipboard } from '../../../hooks/useCopyToClipboard'
-import { VaultPasswordFormModalContent } from '../VaultPasswordFormModalContent'
 import {
   CautionContainer,
   CautionIcon,
@@ -41,6 +37,10 @@ import {
   QrCodeContainer,
   QrCodeTitle
 } from './styles'
+import { useAutoLockContext } from '../../../context/AutoLockContext'
+import { useModal } from '../../../context/ModalContext'
+import { useCopyToClipboard } from '../../../hooks/useCopyToClipboard'
+import { VaultPasswordFormModalContent } from '../VaultPasswordFormModalContent'
 
 /**
  * @param {{
