@@ -30,7 +30,10 @@ import {
  *  onClick?: () => void,
  *  type?: 'text' | 'password',
  *  isPassword: boolean,
- *  as?: AsTarget
+ *  as?: AsTarget,
+ *  testID?: string,
+ *  accessibilityLabel?: string,
+ *  nativeID?: string
  * }} props
  */
 export const InputPasswordPearPass = ({
@@ -45,7 +48,9 @@ export const InputPasswordPearPass = ({
   type = 'text',
   isPassword,
   onClick,
-  as
+  as,
+  accessibilityLabel,
+  nativeID
 }) => {
   const inputRef = useRef(null)
   const [isFocused, setIsFocused] = useState(false)
@@ -83,8 +88,8 @@ export const InputPasswordPearPass = ({
         <Input
           ref={inputRef}
           testID={testID}
-          nativeID={testID}
-          accessibilityLabel={testID}
+          nativeID={nativeID ?? testID}
+          accessibilityLabel={accessibilityLabel ?? testID}
           value={value}
           onChangeText={handleChange}
           placeholder={placeholder}
