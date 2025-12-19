@@ -125,46 +125,46 @@ export const OnboardingContainer = ({
     switch (currentStep) {
       case 0:
         return (
-          <View
-            testID="onboarding-media-step-0"
-            accessibilityLabel="onboarding-media-step-0"
-          >
-          <InitialVideo
-            onStart={() => buttonFadeAnim.setValue(0)}
-            onEnded={() => {
-              Animated.timing(buttonFadeAnim, {
-                toValue: 1,
-                duration: 500,
-                useNativeDriver: true
-              }).start()
-            }}
-          />
-        </View>
+          <View style={styles.centerContentWrapper}>
+            <InitialVideo
+              onStart={() => buttonFadeAnim.setValue(0)}
+              onEnded={() => {
+                Animated.timing(buttonFadeAnim, {
+                  toValue: 1,
+                  duration: 500,
+                  useNativeDriver: true
+                }).start()
+              }}
+              testID="onboarding-media-step-0"
+              accessibilityLabel="onboarding-media-step-0"
+              nativeID="onboarding-media-step-0"
+            />
+          </View>
         )
       case 1:
         return (
-          <View
-            testID="onboarding-media-step-1"
-            accessibilityLabel="onboarding-media-step-1"
-          >
-          <Animated.Image
-            source={require('../../../assets/images/intro/closeLock.png')}
-            style={[
-              styles.centerImage,
-              {
-                transform: [
-                  {
-                    translateY: floatAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [0, -20]
-                    })
-                  }
-                ]
-              }
-            ]}
-            resizeMode="contain"
-          />
-        </View>
+          <View style={styles.centerContentWrapper}>
+            <Animated.Image
+              source={require('../../../assets/images/intro/closeLock.png')}
+              style={[
+                styles.centerImage,
+                {
+                  transform: [
+                    {
+                      translateY: floatAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, -20]
+                      })
+                    }
+                  ]
+                }
+              ]}
+              resizeMode="contain"
+              testID="onboarding-media-step-1"
+              accessibilityLabel="onboarding-media-step-1"
+              nativeID="onboarding-media-step-1"
+            />
+          </View>
         )
       case 2:
         return (
@@ -173,8 +173,9 @@ export const OnboardingContainer = ({
             style={styles.riveAnimation}
             testID="onboarding-media-step-2"
             accessibilityLabel="onboarding-media-step-2"
-    />
-  )
+            nativeID="onboarding-media-step-2"
+          />
+        )
 
       case 3:
         return (
@@ -183,8 +184,9 @@ export const OnboardingContainer = ({
             style={styles.riveAnimation}
             testID="onboarding-media-step-3"
             accessibilityLabel="onboarding-media-step-3"
-    />
-  )
+            nativeID="onboarding-media-step-3"
+          />
+        )
 
       case 4:
         return (
@@ -193,13 +195,15 @@ export const OnboardingContainer = ({
             style={styles.riveAnimationForm}
             testID="onboarding-media-step-4"
             accessibilityLabel="onboarding-media-step-4"
-    />
-  )
+            nativeID="onboarding-media-step-4"
+          />
+        )
       case 5:
         return (
           <View 
             testID="onboarding-media-step-5"
             accessibilityLabel="onboarding-media-step-5"
+            nativeID="onboarding-media-step-5"
             style={styles.finalStepContainer}>
               <View style={styles.iconContainer}>
                 <View style={styles.qrheaderContainer}>
@@ -313,8 +317,8 @@ export const OnboardingContainer = ({
         {SCREENS.map((step) => (
           <TouchableOpacity
             key={step}
-            testID={`onboarding_progress_step_${step}`}
-            accessibilityLabel={`onboarding_progress_step_${step}`}
+            testID={`onboarding-progress-step-${step}`}
+            accessibilityLabel={`onboarding-progress-step-${step}`}
             style={[
               styles.paginationDot,
               currentStep === step && styles.paginationDotActive
@@ -362,11 +366,14 @@ export const OnboardingContainer = ({
 
       <View style={styles.contentWrapper}>
         <View style={styles.topSection}>
-          <View
-          testID="onboarding-logo"
-          accessibilityLabel="onboarding-logo" 
-          style={styles.logoContainer}>
-            <LogoTextWithLock width={170} height={50} />
+          <View style={styles.logoContainer}>
+            <LogoTextWithLock 
+              width={170} 
+              height={50}
+              testID="onboarding-logo"
+              accessibilityLabel="onboarding-logo"
+              nativeID="onboarding-logo"
+            />
           </View>
         </View>
 
@@ -449,6 +456,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 10
+  },
+  centerContentWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   centerImage: {
     width: '80%',

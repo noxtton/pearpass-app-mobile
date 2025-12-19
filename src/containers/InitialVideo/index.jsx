@@ -7,8 +7,11 @@ import { StyleSheet } from 'react-native'
  * @param {Object} props - Component props.
  * @param {() => void} props.onStart - Callback invoked immediately after playback starts.
  * @param {() => void} props.onEnded - Callback invoked after 3000 ms (simulated completion).
+ * @param {string} [props.testID] - Test identifier for the video element.
+ * @param {string} [props.accessibilityLabel] - Accessibility label for the video element.
+ * @param {string} [props.nativeID] - Native identifier for the video element.
  */
-export const InitialVideo = ({ onStart, onEnded }) => {
+export const InitialVideo = ({ onStart, onEnded, testID, accessibilityLabel, nativeID }) => {
   const player = useVideoPlayer(
     require('../../../assets/videos/second_lock.mp4'),
     (player) => {
@@ -42,6 +45,9 @@ export const InitialVideo = ({ onStart, onEnded }) => {
       allowsFullscreen={false}
       allowsPictureInPicture={false}
       nativeControls={false}
+      testID={testID}
+      accessibilityLabel={accessibilityLabel}
+      nativeID={nativeID ?? testID}
     />
   )
 }
