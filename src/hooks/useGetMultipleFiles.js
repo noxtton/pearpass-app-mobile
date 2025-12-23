@@ -152,7 +152,7 @@ export const useGetMultipleFiles = ({
             .filter(Boolean)
             .map((fieldName) => getFilesAsync(fieldName))
 
-          await Promise.all(promises)
+          await Promise.allSettled(promises)
         } catch (error) {
           logger.error('Error loading files:', error)
           // Hide loading on error
@@ -185,7 +185,7 @@ export const useGetMultipleFiles = ({
         .filter(Boolean)
         .map((fieldName) => getFilesAsync(fieldName))
 
-      await Promise.all(promises)
+      await Promise.allSettled(promises)
     } catch (error) {
       logger.error('Error refetching files:', error)
       if (isMountedRef.current) {
