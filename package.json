@@ -1,6 +1,6 @@
 {
   "name": "pearpass-app-mobile",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "type": "module",
   "license": "Apache-2.0",
@@ -28,7 +28,7 @@
     "custom-prebuild:android": "node scripts/custom-expo-prebuild.cjs android",
     "update-submodules": "bash scripts/update-submodules.sh",
     "eas-build-pre-install": "node -v && npm -v && npm install --package-lock-only --ignore-scripts --no-audit --no-fund",
-    "eas-build-post-install": "npm run bundle-bare"
+    "eas-build-post-install": "npm run bundle-bare && npm run lingui:extract && npm run lingui:compile"
   },
   "dependencies": {
     "@expo/metro-runtime": "~5.0.4",
@@ -121,7 +121,8 @@
     "husky": "^9.1.7",
     "jest": "29.7.0",
     "jest-environment-jsdom": "^30.2.0",
-    "react-test-renderer": "19.0.0"
+    "react-test-renderer": "19.0.0",
+    "typescript": "~5.8.3"
   },
   "private": true
 }

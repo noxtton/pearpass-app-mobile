@@ -3,7 +3,7 @@
     "name": "PearPass",
     "slug": "pearpass",
     "icon": "./assets/images/appIcons/app-icon.png",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "android": {
       "package": "com.noxtton.pearpass",
       "permissions": [
@@ -29,7 +29,7 @@
       },
       "usesNonExemptEncryption": false,
       "scheme": "pearpassappmobile",
-      "appleTeamId": "43QFHSJ5QR"
+      "appleTeamId": "77ZH693K52"
     },
     "plugins": [
       [

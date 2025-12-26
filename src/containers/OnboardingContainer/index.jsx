@@ -114,10 +114,7 @@ export const OnboardingContainer = ({
     switch (currentStep) {
       case 0:
         return (
-          <View
-            testID="onboarding-media-step-0"
-            accessibilityLabel="onboarding-media-step-0"
-          >
+          <View>
             <InitialVideo
               onStart={() => buttonFadeAnim.setValue(0)}
               onEnded={() => {
@@ -132,10 +129,7 @@ export const OnboardingContainer = ({
         )
       case 1:
         return (
-          <View
-            testID="onboarding-media-step-1"
-            accessibilityLabel="onboarding-media-step-1"
-          >
+          <View>
             <Animated.Image
               source={require('../../../assets/images/intro/closeLock.png')}
               style={[
@@ -157,30 +151,21 @@ export const OnboardingContainer = ({
         )
       case 2:
         return (
-          <View
-            testID="onboarding-media-step-2"
-            accessibilityLabel="onboarding-media-step-2"
-          >
+          <View>
             <Rive resourceName="password" style={styles.riveAnimation} />
           </View>
         )
 
       case 3:
         return (
-          <View
-            testID="onboarding-media-step-3"
-            accessibilityLabel="onboarding-media-step-3"
-          >
+          <View>
             <Rive resourceName="category" style={styles.riveAnimation} />
           </View>
         )
 
       case 4:
         return (
-          <View
-            testID="onboarding-media-step-4"
-            accessibilityLabel="onboarding-media-step-4"
-          >
+          <View>
             <Rive resourceName="form" style={styles.riveAnimationForm} />
           </View>
         )
@@ -339,26 +324,9 @@ export const OnboardingContainer = ({
           </View>
         </View>
 
-        <View
-          testID="onboarding-center-section"
-          accessibilityLabel="onboarding-center-section"
-          style={styles.centerSection}
-        >
-          {renderCenterContent()}
-        </View>
-
-        <View
-          testID="onboarding-bottom-section"
-          accessibilityLabel="onboarding-bottom-section"
-          style={styles.bottomSection}
-        >
-          <Text
-            testID="onboarding-main-description"
-            accessibilityLabel="onboarding-main-description"
-            style={styles.descriptionText}
-          >
-            {mainDescription}
-          </Text>
+        <View style={styles.centerSection}>{renderCenterContent()}</View>
+        <View style={styles.bottomSection}>
+          <Text style={styles.descriptionText}>{mainDescription}</Text>
 
           {getSubDescriptionContent() && (
             <View
