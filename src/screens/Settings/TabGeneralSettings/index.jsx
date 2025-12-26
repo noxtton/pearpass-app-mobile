@@ -37,7 +37,7 @@ export const TabGeneralSettings = () => {
 
   const [message, setMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-
+  const [email, setEmail] = useState('')
   const { languageOptions } = useLanguageOptions()
 
   const handleReportProblem = async () => {
@@ -118,6 +118,8 @@ export const TabGeneralSettings = () => {
         setMessage={setMessage}
         isLoading={isLoading}
         handleReportProblem={handleReportProblem}
+        email={email}
+        onEmailChange={setEmail}
       />
 
       <DeviceSection />
