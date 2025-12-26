@@ -4,6 +4,7 @@ import {
   KebabMenuIcon
 } from 'pearpass-lib-ui-react-native-components'
 import { colors } from 'pearpass-lib-ui-theme-provider/native'
+import { View } from 'react-native'
 
 import {
   FolderContainer,
@@ -49,11 +50,25 @@ export const Folder = ({
     onFolderSelect(folder)
   }
 
+  const getTestID = () => {
+    if (folder.id === 'allFolder') return 'sidebar-all-folders'
+    if (folder.id === 'favorite') return 'sidebar-favorites'
+    if (folder.isCreateNew) return 'sidebar-create-new'
+    return undefined
+  }
+
+  const getCountTestID = () => {
+    if (folder.id === 'allFolder') return 'sidebar-all-folders-count'
+    if (folder.id === 'favorite') return 'sidebar-favorites-count'
+    return undefined
+  }
+
   return (
     <FolderWrapper
       last={isLast}
       onLongPress={onLongPress}
       onPress={handlePress}
+      testID={getTestID()}
     >
       <FolderContainer>
         {folder.icon}
@@ -62,13 +77,20 @@ export const Folder = ({
           <FolderText>{folder.name}</FolderText>
 
           {!folder.isCreateNew && (
-            <FolderCount>
+            <FolderCount testID={getCountTestID()}>
               {folder.count ?? 0} {t`items`}
             </FolderCount>
           )}
         </FolderContent>
 
-        {isActive && <CheckIcon color={colors.primary400.mode1} size="24" />}
+        {isActive && (
+          <View testID={folder.id === 'allFolder' ? 'sidebar-all-folders-selected' : undefined}>
+            <CheckIcon 
+              color={colors.primary400.mode1} 
+              size="24" 
+            />
+          </View>
+        )}
       </FolderContainer>
 
       <KebabMenuIcon size="21" />

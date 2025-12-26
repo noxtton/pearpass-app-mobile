@@ -71,19 +71,22 @@ export const LoadVault = () => {
         >
           <View style={styles.formContainer}>
             <View style={{ marginBottom: 20, alignItems: 'center', gap: 10 }}>
-              <Text style={styles.title}>{t`Load an existing Vault`}</Text>
+              <Text style={styles.title} testID="load-vault-title">{t`Load an existing Vault`}</Text>
               <Text
                 style={styles.subtitle}
+                testID="load-vault-subtitle"
               >{t`Open your vault with this code`}</Text>
             </View>
 
             <View style={{ width: '100%', gap: 15 }}>
-              <InputPasswordPearPass
-                placeholder={t`Insert your vault's code...`}
-                value={inviteCode}
-                onChange={setInviteCode}
-                error={error}
-              />
+              <View testID="load-vault-invite-code-input">
+                <InputPasswordPearPass
+                  placeholder={t`Insert your vault's code...`}
+                  value={inviteCode}
+                  onChange={setInviteCode}
+                  error={error}
+                />
+              </View>
             </View>
 
             <View style={{ width: '100%', gap: 10, marginTop: 10 }}>
@@ -99,22 +102,26 @@ export const LoadVault = () => {
                 </>
               ) : (
                 <>
-                  <ButtonPrimary
-                    onPress={() => pairWithCode(inviteCode)}
-                    stretch
-                    disabled={!inviteCode.length || isLoading}
-                  >
-                    {t`Open Vault`}
-                  </ButtonPrimary>
+                  <View testID="load-vault-open-button">
+                    <ButtonPrimary
+                      onPress={() => pairWithCode(inviteCode)}
+                      stretch
+                      disabled={!inviteCode.length || isLoading}
+                    >
+                      {t`Open Vault`}
+                    </ButtonPrimary>
+                  </View>
 
-                  <ButtonSecondary
-                    stretch
-                    onPress={() =>
-                      navigation.navigate('Welcome', { state: 'selectOrLoad' })
-                    }
-                  >
-                    {t`Select Vaults`}
-                  </ButtonSecondary>
+                  <View testID="load-vault-select-vaults-button">
+                    <ButtonSecondary
+                      stretch
+                      onPress={() =>
+                        navigation.navigate('Welcome', { state: 'selectOrLoad' })
+                      }
+                    >
+                      {t`Select Vaults`}
+                    </ButtonSecondary>
+                  </View>
 
                   <Pressable
                     style={styles.qrCodeButton}
@@ -131,6 +138,7 @@ export const LoadVault = () => {
                         snapPoints: ['10%', '75%', '75%']
                       })
                     }
+                    testID="load-vault-scan-qr-button"
                   >
                     <QrCodeIcon size="21" color={colors.primary400.mode1} />
                     <Text style={styles.qrCodeText}>{t`Scan QR Code`}</Text>

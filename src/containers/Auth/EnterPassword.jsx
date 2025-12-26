@@ -102,9 +102,9 @@ export const EnterPassword = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="enter-password-screen">
       {!isKeyboardVisible && (
-        <View style={styles.logoContainer}>
+        <View style={styles.logoContainer} testID="enter-password-logo">
           <LogoTextWithLock width={170} height={50} />
         </View>
       )}
@@ -120,27 +120,34 @@ export const EnterPassword = () => {
       >
         <View style={styles.formContainer}>
           <View style={styles.headerContainer}>
-            <Text style={styles.headerText}>{t`Enter Master Password`}</Text>
+            <Text style={styles.headerText} testID="enter-password-title">{t`Enter Master Password`}</Text>
           </View>
 
           <View style={styles.inputContainer}>
-            <InputPasswordPearPass
-              placeholder={t`Master password`}
-              {...register('password')}
-              isPassword
+            <View testID="enter-password-input">
+              <InputPasswordPearPass
+                placeholder={t`Master password`}
+                {...register('password')}
+                isPassword
+                errorTestID="enter-password-input-error"
+              />
+            </View>
+          </View>
+          <View testID="enter-password-warning">
+            <AppWarning
+              warning={t`Don't forget your master password. It's the only way to access your vault. We can't help recover it. Back it up securely.`}
             />
           </View>
-          <AppWarning
-            warning={t`Don't forget your master password. It's the only way to access your vault. We can't help recover it. Back it up securely.`}
-          />
           <View style={styles.buttonContainer}>
             {isLoading ? (
               <ActivityIndicator size="small" color={colors.primary400.mode1} />
             ) : (
               <>
-                <ButtonPrimary stretch onPress={handleSubmit(onSubmit)}>
-                  {t`Continue`}
-                </ButtonPrimary>
+                <View testID="enter-password-continue-button">
+                  <ButtonPrimary stretch onPress={handleSubmit(onSubmit)}>
+                    {t`Continue`}
+                  </ButtonPrimary>
+                </View>
 
                 <ButtonBiometricLogin
                   onBiometricLogin={(encryptionData) =>
