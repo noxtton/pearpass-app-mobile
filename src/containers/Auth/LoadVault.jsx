@@ -79,14 +79,13 @@ export const LoadVault = () => {
             </View>
 
             <View style={{ width: '100%', gap: 15 }}>
-              <View testID="load-vault-invite-code-input">
                 <InputPasswordPearPass
+                  testID="load-vault-invite-code-input"
                   placeholder={t`Insert your vault's code...`}
                   value={inviteCode}
                   onChange={setInviteCode}
                   error={error}
                 />
-              </View>
             </View>
 
             <View style={{ width: '100%', gap: 10, marginTop: 10 }}>
@@ -102,18 +101,17 @@ export const LoadVault = () => {
                 </>
               ) : (
                 <>
-                  <View testID="load-vault-open-button">
                     <ButtonPrimary
+                      testID="load-vault-open-button"
                       onPress={() => pairWithCode(inviteCode)}
                       stretch
                       disabled={!inviteCode.length || isLoading}
                     >
                       {t`Open Vault`}
                     </ButtonPrimary>
-                  </View>
 
-                  <View testID="load-vault-select-vaults-button">
                     <ButtonSecondary
+                      testID="load-vault-select-vaults-button"
                       stretch
                       onPress={() =>
                         navigation.navigate('Welcome', { state: 'selectOrLoad' })
@@ -121,7 +119,6 @@ export const LoadVault = () => {
                     >
                       {t`Select Vaults`}
                     </ButtonSecondary>
-                  </View>
 
                   <Pressable
                     style={styles.qrCodeButton}
