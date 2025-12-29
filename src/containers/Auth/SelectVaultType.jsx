@@ -69,26 +69,19 @@ export const SelectVaultType = () => {
             </Text>
           </View>
         ) : (
-          <View
-            style={styles.vaultsSection}
-            testID="select-vault-type-vaults-section"
-          >
+          <View style={styles.vaultsSection}>
             <Text
               style={styles.headerText}
-              testID="select-vault-type-list-title"
-            >
-              {t`Select a vault, create a new one or load another one`}
-            </Text>
+            >{t`Select a vault, create a new one or load another one`}</Text>
 
             <ScrollView
               testID="select-vault-type-vault-list"
               style={styles.vaultsList}
               showsVerticalScrollIndicator={false}
             >
-              {sortedVaults?.map((vault, index) => (
+              {sortedVaults?.map((vault) => (
                 <View key={vault.id} style={styles.vaultItemWrapper}>
                   <ListItem
-                    testID={`select-vault-type-vault-item-${index}`}
                     onPress={() => handleVaultSelect(vault.id)}
                     name={vault.name ?? vault.id}
                     date={vault.createdAt}

@@ -24,16 +24,6 @@ import { useBottomSheet } from '../../context/BottomSheetContext'
 import { useQRScanner } from '../../hooks/useQRScanner'
 import { ButtonPrimary, ButtonSecondary } from '../../libComponents'
 
-/**
- * Content component for pairing with another device's vault.
- * Allows users to scan a QR code or manually enter a vault key
- * to connect to an existing vault from another device.
- * @param {Object} props - Component props
- * @param {JSX.Element} props.tabs - Tab navigation component to render
- * @param {boolean} props.showScanner - Whether to show the QR scanner view
- * @param {Function} props.setShowScanner - Callback to toggle scanner visibility
- * @returns {JSX.Element} The rendered content
- */
 export const PairAnotherDeviceContent = ({
   tabs,
   showScanner,

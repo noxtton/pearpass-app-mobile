@@ -13,14 +13,6 @@ import { useAutoLockContext } from '../../context/AutoLockContext'
 import { useBottomSheet } from '../../context/BottomSheetContext'
 import { useCopyToClipboard } from '../../hooks/useCopyToClipboard'
 
-/**
- * Content component for sharing this device's vault with another device.
- * Displays a QR code and vault key that other devices can scan or enter
- * to connect to this vault. The QR code expires after 120 seconds.
- * @param {Object} props - Component props
- * @param {JSX.Element} props.tabs - Tab navigation component to render
- * @returns {JSX.Element} The rendered content
- */
 export const PairThisDeviceContent = ({ tabs }) => {
   const { t } = useLingui()
   const { collapse } = useBottomSheet()

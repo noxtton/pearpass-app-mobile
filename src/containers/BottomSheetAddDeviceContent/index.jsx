@@ -18,12 +18,6 @@ const TAB = {
   PAIR_ANOTHER: 'pairAnother'
 }
 
-/**
- * Bottom sheet content component for adding and pairing devices.
- * Provides two modes: sharing this vault's QR code for others to scan,
- * or scanning/entering another device's vault key to load their vault.
- * @returns {JSX.Element} The rendered bottom sheet content
- */
 export const BottomSheetAddDeviceContent = () => {
   const { t } = useLingui()
   const { collapse } = useBottomSheet()

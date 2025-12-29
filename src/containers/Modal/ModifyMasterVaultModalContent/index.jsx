@@ -4,6 +4,10 @@ import { useLingui } from '@lingui/react/macro'
 import { useForm } from 'pear-apps-lib-ui-react-hooks'
 import { Validator } from 'pear-apps-utils-validator'
 import { useUserData } from 'pearpass-lib-vault'
+import {
+  clearBuffer,
+  stringToBuffer
+} from 'pearpass-lib-vault/src/utils/buffer'
 import { validatePasswordChange } from 'pearpass-utils-password-check'
 
 import { useModal } from '../../../context/ModalContext'
@@ -63,11 +67,14 @@ export const ModifyMasterVaultModalContent = () => {
       return
     }
 
+    const newPasswordBuffer = stringToBuffer(values.newPassword)
+    const currentPasswordBuffer = stringToBuffer(values.currentPassword)
+
     try {
       setIsLoading(true)
       await updateMasterPassword({
-        newPassword: values.newPassword,
-        currentPassword: values.currentPassword
+        newPassword: newPasswordBuffer,
+        currentPassword: currentPasswordBuffer
       })
 
       setIsLoading(false)
@@ -78,6 +85,9 @@ export const ModifyMasterVaultModalContent = () => {
       setErrors({
         currentPassword: t`Invalid password`
       })
+    } finally {
+      clearBuffer(newPasswordBuffer)
+      clearBuffer(currentPasswordBuffer)
     }
   }
 
