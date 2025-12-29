@@ -268,13 +268,12 @@ export const CreatePassword = () => {
             </View>
 
             <View style={styles.termsContainer}>
-              <View testID="create-password-warning">
                 <AppWarning
+                  testID="create-password-warning"
                   testID "create-password-warning-text"
                   warning={t`Don't forget your master password. It's the only way to access your vault. We can't help recover it. Back it up securely.`}
                   textStyles={{ flex: 0 }}
                 />
-              </View>
               <Text style={styles.termsTitle} testID="create-password-terms-title">{t`PearPass Terms of Use`}</Text>
 
               <View style={styles.checkboxContainer}>
