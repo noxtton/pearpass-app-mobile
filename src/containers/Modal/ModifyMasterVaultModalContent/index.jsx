@@ -8,7 +8,7 @@ import {
   clearBuffer,
   stringToBuffer
 } from 'pearpass-lib-vault/src/utils/buffer'
-import { checkPasswordStrength } from 'pearpass-utils-password-check'
+import { validatePasswordChange } from 'pearpass-utils-password-check'
 
 import { useModal } from '../../../context/ModalContext'
 import { ModifyVaultsModaContentWrapper } from '../ModifyVaultsModaContentWrapper'
@@ -44,22 +44,26 @@ export const ModifyMasterVaultModalContent = () => {
   })
 
   const onSubmit = async (values) => {
-    const result = checkPasswordStrength(values.newPassword, { errors })
+    const { currentPassword, newPassword, repeatPassword } = values
+    const result = validatePasswordChange({
+      currentPassword,
+      newPassword,
+      repeatPassword,
+      messages: {
+        newPasswordMustDiffer: t`New password must be different from the current password`,
+        passwordsDontMatch: t`Passwords do not match`
+      },
+      config: { errors }
+    })
 
     if (!result.success) {
       setErrors({
-        newPassword: result.errors[0]
+        [result.field]: result.error
       })
 
-      setValue('repeatPassword', '')
-      return
-    }
-
-    if (values.newPassword !== values.repeatPassword) {
-      setErrors({
-        repeatPassword: t`Passwords do not match`
-      })
-
+      if (result.field === 'newPassword') {
+        setValue('repeatPassword', '')
+      }
       return
     }
 
