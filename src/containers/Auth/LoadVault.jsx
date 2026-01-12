@@ -84,7 +84,7 @@ export const LoadVault = () => {
             <View style={{ width: '100%', gap: 15 }}>
               <InputPasswordPearPass
                 testID="load-vault-invite-code-input"
-                placeholder={t`Enter your vault code…`}
+                placeholder={t`Insert vault key...`}
                 value={inviteCode}
                 onChange={setInviteCode}
                 error={error}
