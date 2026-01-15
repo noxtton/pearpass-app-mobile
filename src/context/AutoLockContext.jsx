@@ -4,64 +4,73 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState
-} from 'react'
+  useState,
+} from "react";
 
-import * as SecureStore from 'expo-secure-store'
-import { DEFAULT_AUTO_LOCK_TIMEOUT } from 'pearpass-lib-constants'
+import * as SecureStore from "expo-secure-store";
+import {
+  DEFAULT_AUTO_LOCK_TIMEOUT,
+  AUTO_LOCK_ENABLED,
+} from "pearpass-lib-constants";
 
-import { SECURE_STORAGE_KEYS } from '../constants/secureStorageKeys'
-import { logger } from '../utils/logger'
+import { SECURE_STORAGE_KEYS } from "../constants/secureStorageKeys";
+import { logger } from "../utils/logger";
 
 const AutoLockContext = createContext({
   shouldBypassAutoLock: false,
   setShouldBypassAutoLock: () => {},
   autoLockTimeout: DEFAULT_AUTO_LOCK_TIMEOUT,
   setAutoLockTimeout: () => {},
-  isAutoLockEnabled: true
-})
+  isAutoLockEnabled: true,
+});
 
 export const AutoLockProvider = ({ children }) => {
-  const [shouldBypassAutoLock, setShouldBypassAutoLock] = useState(false)
+  const [shouldBypassAutoLock, setShouldBypassAutoLock] = useState(false);
   const [autoLockTimeout, setAutoLockTimeoutState] = useState(
     DEFAULT_AUTO_LOCK_TIMEOUT
-  )
-  const [isLoaded, setIsLoaded] = useState(false)
+  );
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const loadSavedTimeout = async () => {
       try {
+        if (!AUTO_LOCK_ENABLED) {
+          setAutoLockTimeoutState(DEFAULT_AUTO_LOCK_TIMEOUT);
+          setIsLoaded(true);
+          return;
+        }
+
         const savedTimeout = await SecureStore.getItemAsync(
           SECURE_STORAGE_KEYS.AUTO_LOCK_TIMEOUT
-        )
+        );
         if (savedTimeout !== null) {
           const parsedTimeout =
-            savedTimeout === 'null' ? null : Number(savedTimeout)
-          setAutoLockTimeoutState(parsedTimeout)
+            savedTimeout === "null" ? null : Number(savedTimeout);
+          setAutoLockTimeoutState(parsedTimeout);
         }
       } catch (error) {
-        logger.error('Error loading auto-lock timeout:', error)
+        logger.error("Error loading auto-lock timeout:", error);
       } finally {
-        setIsLoaded(true)
+        setIsLoaded(true);
       }
-    }
+    };
 
-    loadSavedTimeout()
-  }, [])
+    loadSavedTimeout();
+  }, []);
 
   const setAutoLockTimeout = useCallback(async (timeout) => {
-    setAutoLockTimeoutState(timeout)
+    setAutoLockTimeoutState(timeout);
     try {
       await SecureStore.setItemAsync(
         SECURE_STORAGE_KEYS.AUTO_LOCK_TIMEOUT,
         String(timeout)
-      )
+      );
     } catch (error) {
-      logger.error('Error saving auto-lock timeout:', error)
+      logger.error("Error saving auto-lock timeout:", error);
     }
-  }, [])
+  }, []);
 
-  const isAutoLockEnabled = autoLockTimeout !== null
+  const isAutoLockEnabled = autoLockTimeout !== null;
 
   const autoLockContextValue = useMemo(
     () => ({
@@ -69,25 +78,25 @@ export const AutoLockProvider = ({ children }) => {
       setShouldBypassAutoLock,
       autoLockTimeout,
       setAutoLockTimeout,
-      isAutoLockEnabled
+      isAutoLockEnabled,
     }),
     [
       shouldBypassAutoLock,
       autoLockTimeout,
       setAutoLockTimeout,
-      isAutoLockEnabled
+      isAutoLockEnabled,
     ]
-  )
+  );
 
   if (!isLoaded) {
-    return null
+    return null;
   }
 
   return (
     <AutoLockContext.Provider value={autoLockContextValue}>
       {children}
     </AutoLockContext.Provider>
-  )
-}
+  );
+};
 
-export const useAutoLockContext = () => useContext(AutoLockContext)
+export const useAutoLockContext = () => useContext(AutoLockContext);

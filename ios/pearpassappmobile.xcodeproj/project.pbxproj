@@ -629,7 +629,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.noxtton.pearpass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pears.pass;
 				PRODUCT_NAME = "PearPass";
 				SWIFT_OBJC_BRIDGING_HEADER = "pearpassappmobile/pearpassappmobile-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -661,7 +661,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.noxtton.pearpass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pears.pass;
 				PRODUCT_NAME = "PearPass";
 				SWIFT_OBJC_BRIDGING_HEADER = "pearpassappmobile/pearpassappmobile-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

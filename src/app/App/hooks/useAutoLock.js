@@ -52,6 +52,10 @@ export const useAutoLock = () => {
           })
           resetState()
         }
+
+        if (previousAppState.match(/background/) && nextAppState === 'active') {
+          await refetchUser()
+        }
       }
     )
 
