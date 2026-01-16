@@ -13,6 +13,7 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.facebook.react.bridge.*
+import com.pears.pass.ClearClipboardWorker
 import java.util.concurrent.TimeUnit
 
 class NativeClipboardModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
